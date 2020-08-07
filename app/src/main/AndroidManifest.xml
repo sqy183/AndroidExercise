@@ -9,11 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FragActivity"></activity>
-        <activity android:name=".MainActivity">
+<!--android:theme="@style/AppTheme"  设置标题样式。application与activity中均可设置，冲突时以activity为准-->
+        <activity
+            android:name=".IntentActivity"
+            android:label="@string/intent">
+<!--            隐式Intent实现活动跳转-->
+            <intent-filter>
+                <action android:name="com.example.activitytext.ACTION_START"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+<!--                "android.intent.category.DEFAULT"是默认category-->
+                <category android:name="com.example.activitytext.MY_CATEGORY"/>
+<!--                可以定义Data标签，对对应的Intent响应。要在action、category符合的情况下-->
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/menu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
