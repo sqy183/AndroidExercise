@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 public class IntentActivity extends AppCompatActivity implements View.OnClickListener{
 
+    //可以利用Intent传递Bundle对象。putExtras()、getExtras()
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

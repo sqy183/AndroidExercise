@@ -18,8 +18,22 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * 活动的生存周期函数
+ * onCreate() //完整生存期
+ *     onStart() //可见生存期
+ *     //在未被onDestroy()、已onStop()时重新start活动，会先onRestart()，再onStart()
+ *         onResume() //前台生存期
+ *         onPause()
+ *     onStop()
+ * onDestroy()
+ */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    /**
+     * 活动在被系统回收之前会调用onSaveInstanceState()方法，该方法保存的数据可以在再次创建时获得
+     * @param savedInstanceState 一般为null，但 onSaveInstanceState()方法保存的数据在该参数中
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +52,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.drop).setOnClickListener(this);
         findViewById(R.id.send).setOnClickListener(this);
         findViewById(R.id.sendResult).setOnClickListener(this);
+
+        //接收活动销毁时onSaveInstanceState()保存的数据
+//        if(savedInstanceState!=null) {
+//            String string=savedInstanceState.getString("key");
+//            //...
+//        }
     }
 
     /**
@@ -136,6 +156,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 break;
         }
+    }
+
+    /**
+     * 当活动被系统回收时，会调用本方法，可以在其中保存需要的数据。
+     * 当系统内存不足时，可能会回收已停止的数据
+     * 系统状态变化（如屏幕旋转）时会调用本方法。因为这会调用onDestroy()
+     * @param outState 保存的数据在该参数中。onCreate()中的参数类型一样
+     */
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        String string="内容";
+        //添加键值和数据
+        outState.putString("key",string);
     }
 
     /*
