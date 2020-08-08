@@ -7,6 +7,7 @@ package com.example.androidexercise;
  */
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //通过接口实现监听，必须对按键设置监听
         findViewById(R.id.drop).setOnClickListener(this);
         findViewById(R.id.send).setOnClickListener(this);
+        findViewById(R.id.sendResult).setOnClickListener(this);
     }
 
     /**
@@ -95,16 +97,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.send:
                 String tel=((EditText)findViewById(R.id.send_tel)).getText().toString();
-                Intent intent=new Intent(MainActivity.this,IntentActivity.class);
+                Intent intent1=new Intent(MainActivity.this,IntentActivity.class);
                 //利用Intent传输数据
                 //putExtra()第一个参数是键，由于接收Intent分辨；第二个参数是数据
-                intent.putExtra("tel",tel);
-                startActivity(intent);
+                intent1.putExtra("tel",tel);
+                startActivity(intent1);
+                break;
+            case R.id.sendResult:
+                Intent intent2=new Intent(MainActivity.this,IntentActivity.class);
+                //方法startActivityForResult()用于启动活动，但这个方法使得启动的活动在销毁时能够返回一个结果给上一个活动
+                //参数：第一个是intent，第二个是请求码
+                startActivityForResult(intent2,1);
+                break;
             default:
                 Toast.makeText(this, "抱歉，该按键尚未定义！", Toast.LENGTH_SHORT).show();
                 break;
         }
 
+    }
+
+    /**
+     * 使用方法startActivityForResult()启动下一个活动后，下一个活动下回后会调用本活动的本方法
+     * 本次练习是在下一个活动中新建Intent传递数据，等到调用本方法时接收该数据
+     * @param requestCode 请求码：在调用startActivityForResult()启动下一个活动时也需要传入的参数
+     * @param resultCode 返回数据时传入的处理结果
+     * @param data 携带返回数据的Intent
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 1:
+               if(resultCode==RESULT_OK) {
+                   String sendResult=data.getStringExtra("sendResult");
+                   ((EditText)findViewById(R.id.send_tel)).setText(sendResult);
+               }
+               break;
+            default:
+                break;
+        }
     }
 
     /*

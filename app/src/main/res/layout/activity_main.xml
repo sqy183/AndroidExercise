@@ -43,6 +43,12 @@
                 android:text="确认"
                 android:layout_weight="0.2"/>
         </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="确认二：使用startActivityForResult()启动另活动"
+            android:id="@+id/sendResult"/>
     </LinearLayout>
 
 

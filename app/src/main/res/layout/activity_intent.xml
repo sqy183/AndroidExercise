@@ -34,6 +34,12 @@
             android:id="@+id/find_tel"
             android:text="确认"/>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sendResult2"
+            android:text="确认二"/>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
