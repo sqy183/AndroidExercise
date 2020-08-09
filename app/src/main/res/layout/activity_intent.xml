@@ -14,7 +14,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="https://www.baidu.com/"
+            android:maxLines="2"
             android:id="@+id/IP"/>
+<!--        EditText的高度是随输入变化的，所以可以通过maxLines指定最大显示长度，超过后会滚动-->
 
         <Button
             android:id="@+id/find_ip"

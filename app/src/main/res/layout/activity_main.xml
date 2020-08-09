@@ -48,7 +48,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="确认二：使用startActivityForResult()启动另活动"
+            android:textAllCaps="false"
             android:id="@+id/sendResult"/>
+<!--        textAllCaps="false"禁用对Button的英文字母自动大写-->
     </LinearLayout>
 
 

@@ -7,4 +7,7 @@
     <item
         android:id="@+id/db"
         android:title="数据库练习"/>
+    <item
+        android:id="@+id/frag"
+        android:title="碎片练习"/>
 </menu>

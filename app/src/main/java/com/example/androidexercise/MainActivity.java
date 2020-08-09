@@ -9,6 +9,7 @@ package com.example.androidexercise;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +28,15 @@ import android.widget.Toast;
  *         onPause()
  *     onStop()
  * onDestroy()
+ */
+
+/**
+ * 活动的启动模式
+ * 在AndroidManifest.xml中指定<activity>的android:launchMode属性选择
+ * standard：默认的，不论栈中是否存在该活动，启动活动时，均会重新创建并入栈
+ * singleTop：当该活动位于栈顶时，不会重新创建，其他均创建入栈
+ * singleTask：当栈中存在该活动时，清除位于其上的所有活动，使其重新位于栈顶
+ * singleInstance：会给该活动重新创建一个栈，使得它可以被不同的App调用，且只存在该栈中的一个活动（不会在启动该活动的其他栈创建活动了）
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -94,9 +104,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.addCategory("com.example.activitytext.MY_CATEGORY");
                 startActivity(intent);
                 break;
-            /*case R.id.db:
-                Toast.makeText(this, "正在进入数据库练习界面", Toast.LENGTH_SHORT).show();
-                break;*/
+            case R.id.frag:
+                Toast.makeText(this, "正在进入碎片练习界面", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, FragActivity.class));
+                break;
             default:
                 Toast.makeText(this, "抱歉，该模块尚未完成", Toast.LENGTH_SHORT).show();
         }
